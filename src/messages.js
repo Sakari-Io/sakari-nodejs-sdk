@@ -2,25 +2,15 @@ import axios from 'axios';
 
 import { BASE_URL } from './constants';
 
-const send = (getAccessToken, accountId) => ({ contacts, conversations, template }) => {
-  console.log('accountId', accountId);
-  return getAccessToken()
-    .then((token) => {
-      return axios.post(`${BASE_URL}/v1/accounts/${accountId}/messages`, { contacts, conversations, template}, {
-        headers: {
-          Authorization: `bearer ${token}`,
-        },
-      }).then((resp) => {
-        console.log('resp', resp);
-        return resp.data;
-      });
-    });
-}
+const send = (getAccessToken, acctId) => ({ contacts, conversations, template }) => getAccessToken()
+  .then(token => axios.post(`${BASE_URL}/v1/accounts/${acctId}/messages`, { contacts, conversations, template }, {
+    headers: {
+      Authorization: `bearer ${token}`,
+    },
+  }).then(resp => resp.data));
 
-const messages = (getAccessToken, accountId) => {
-  return {
-    send: send(getAccessToken, accountId),
-  }
-}
+const messages = (getAccessToken, accountId) => ({
+  send: send(getAccessToken, accountId),
+});
 
 export default messages;

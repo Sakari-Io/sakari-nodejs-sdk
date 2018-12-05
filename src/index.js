@@ -9,13 +9,10 @@ import { validate } from './signature';
 const isExpired = (token) => {
   const decoded = jwt.decode(token);
   const expiry = moment(decoded.exp);
-  console.log('expiry', expiry);
-
-  return false;
-}
+  return moment().isAfter(expiry);
+};
 
 class Sakari {
-
   constructor(accountId, clientId, clientSecret) {
     this.accountId = accountId;
     this.clientId = clientId;
@@ -31,10 +28,7 @@ class Sakari {
         client_id: this.clientId,
         client_secret: this.clientSecret,
       })
-        .then((resp) => {
-          console.log('gettoken', resp.data);
-          return resp.data.access_token;
-        })
+        .then(resp => resp.data.access_token)
         .then((accessToken) => {
           this.accessToken = accessToken;
           return accessToken;
@@ -45,7 +39,6 @@ class Sakari {
   }
 
   validateRequest = (url, params, signature) => validate(url, params, this.clientSecret, signature);
-
 }
 
 export {
