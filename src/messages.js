@@ -7,7 +7,12 @@ const send = (getAccessToken, acctId) => ({ contacts, conversations, template })
     headers: {
       Authorization: `bearer ${token}`,
     },
-  }).then(resp => resp.data));
+  }).then(resp => resp.data))
+  .catch(err => {
+    console.log('error', err);
+    console.log('errordata', err.data);
+    throw err;
+  });
 
 const buildRequest = (to, message) => ({
   contacts: {
