@@ -14,8 +14,10 @@
 // };
 //
 // const generate = (url, params, token) => {
-//   const data = _.keys(params).sort().reduce((res, key) => `${res}${key}=${params[key]}&`, normalize(url));
-//   const hash = crypto.createHmac('sha1', token).update(data.substring(0, data.length - 1)).digest('base64');
+//   const data = _.keys(params).sort().reduce((res, key) =>
+// `${res}${key}=${params[key]}&`, normalize(url));
+//   const hash = crypto.createHmac('sha1', token).update(
+// data.substring(0, data.length - 1)).digest('base64');
 //   return hash;
 // };
 //
