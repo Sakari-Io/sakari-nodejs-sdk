@@ -8,7 +8,7 @@ const send = (getAccessToken, acctId) => ({ contacts, conversations, template })
       Authorization: `bearer ${token}`,
     },
   }).then(resp => resp.data))
-  .catch(err => {
+  .catch((err) => {
     console.log('error', err);
     console.log('errordata', err.data);
     throw err;
