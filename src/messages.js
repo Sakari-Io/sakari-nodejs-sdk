@@ -9,8 +9,9 @@ const send = (getAccessToken, acctId) => ({ contacts, conversations, template })
     },
   }).then(resp => resp.data))
   .catch((err) => {
-    console.log('error', err);
-    console.log('errordata', err.data);
+    // console.log('error', err);
+    console.log('errordata', err.response);
+    console.log('errordatadata', err.response.data);
     throw err;
   });
 
