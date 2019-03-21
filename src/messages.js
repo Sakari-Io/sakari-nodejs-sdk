@@ -9,8 +9,18 @@ const send = (getAccessToken, acctId) => ({ contacts, conversations, template })
     },
   }).then(resp => resp.data));
 
+const buildRequest = (to, message) => ({
+  contacts: {
+    mobile: {
+      number: to,
+    },
+  },
+  template: message,
+});
+
 const messages = (getAccessToken, accountId) => ({
   send: send(getAccessToken, accountId),
+  sendOne: (to, message) => send(getAccessToken, accountId)(buildRequest(to, message)),
 });
 
 export default messages;
