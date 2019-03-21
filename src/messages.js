@@ -16,11 +16,11 @@ const send = (getAccessToken, acctId) => ({ contacts, conversations, template })
   });
 
 const buildRequest = (to, message) => ({
-  contacts: {
+  contacts: [{
     mobile: {
       number: to,
     },
-  },
+  }],
   template: message,
 });
 
